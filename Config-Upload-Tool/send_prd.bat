@@ -1,0 +1,1 @@
+bash -c "./send.sh prd"
