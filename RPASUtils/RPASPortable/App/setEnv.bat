@@ -13,7 +13,10 @@ SET PATH=C:\cygwin\bin;%PATH%
 SET USING_BASH="CYGWIN"
 :NOCYGWIN
 
-IF [%APP_HOME%] == [] (SET APP_HOME=%CD%)
+IF NOT [%APP_HOME%] == [] GOTO FOLDERSET
+SET APP_HOME=%CD%
+SET APP_DATA_HOME=%APP_HOME%\..\Data
+:FOLDERSET
     
 
 
@@ -42,6 +45,7 @@ mkdir %APP_HOME% %APP_DATA_HOME% %ARPO_HOME% %TEMP_HOME% %PKG_HOME%
 	ECHO ...............................................
 	ECHO.
     ECHO BASH (%USING_BASH%)
+    ECHO %APP_DATA_HOME%
     ::where bash
 	ECHO.
 	ECHO SELECT THE OPTION YOU WANT
