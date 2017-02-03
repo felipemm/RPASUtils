@@ -80,7 +80,8 @@ fi
 
 #Compress the new config
 echo "Compressing config to $CONFIG_NAME.zip"
-zip -r "${CONFIG_PATH}/${CONFIG_NAME}.zip" "${CONFIG_PATH}/${CONFIG_NAME}"
+cd ${CONFIG_PATH}
+zip -r "${CONFIG_NAME}.zip" "./${CONFIG_NAME}/"
 if [[ $? != 0 ]]; then
     exit 1
 fi

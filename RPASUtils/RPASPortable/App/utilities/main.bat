@@ -3,7 +3,11 @@ SETLOCAL ENABLEEXTENSIONS
 SETLOCAL ENABLEDELAYEDEXPANSION
 
 ::Prefer Cygwin over Windows BASH
-IF EXIST C:\cygwin (SET PATH=C:\cygwin\bin;%PATH%)
+SET USING_BASH="WINDOWS BASH"
+IF NOT EXIST C:\cygwin GOTO NOCYGWIN
+SET PATH=C:\cygwin\bin;%PATH%
+SET USING_BASH="CYGWIN"
+:NOCYGWIN
 
 where /q bash
 IF ERRORLEVEL 1 (
@@ -13,6 +17,7 @@ IF ERRORLEVEL 1 (
     pause
     goto MENU
 )
+mkdir %cd%\clients
 
 :MENU
 
@@ -23,6 +28,8 @@ IF ERRORLEVEL 1 (
 	ECHO       Developed by Felipe Matos Moreira
 	ECHO                    v1.0
 	ECHO ...............................................
+	ECHO.
+    ECHO BASH (%USING_BASH%)
 	ECHO.
 	ECHO SELECT THE OPTION YOU WANT
 	ECHO    1 - Set Client PATHs
@@ -44,7 +51,6 @@ IF ERRORLEVEL 1 (
 	IF %M%==4 GOTO OPTION4
 	IF %M%==5 GOTO OPTION5
 	IF %M%==6 GOTO EOF
-
 
 
 
@@ -109,16 +115,16 @@ IF ERRORLEVEL 1 (
             ECHO #!/bin/bash
             ECHO.
             ECHO CONFIG_NAME=%config_name%
-            ECHO CONFIG_PATH=%config_path%
+            ECHO CONFIG_PATH='%config_path%'
             ECHO CONFIG_SVN_PATH='%config_svn_path%'
             ECHO. 
             ECHO DEV_USER=%dev_user%
             ECHO DEV_SERVER=%dev_server%
             ECHO DEV_FOLDER=%dev_folder%
             ECHO. 
-            ECHO QA_USER=%qa_user%
-            ECHO QA_SERVER=%qa_server%
-            ECHO QA_FOLDER=%qa_folder%
+            ECHO UAT_USER=%uat_user%
+            ECHO UAT_SERVER=%uat_server%
+            ECHO UAT_FOLDER=%uat_folder%
             ECHO. 
             ECHO PRD_USER=%prd_user%
             ECHO PRD_SERVER=%prd_server%

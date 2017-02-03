@@ -1,1 +1,1 @@
-. clients/config_PNB.sh 
+. clients/config_Pernambucanas.sh 

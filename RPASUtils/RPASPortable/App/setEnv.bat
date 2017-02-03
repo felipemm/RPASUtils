@@ -7,7 +7,11 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 ::SET APP_DATA_HOME=%CD%\..\Data
 
 ::Prefer Cygwin over Windows BASH
-IF EXIST C:\cygwin (SET PATH=C:\cygwin\bin;%PATH%)
+SET USING_BASH="WINDOWS BASH"
+IF NOT EXIST C:\cygwin GOTO NOCYGWIN
+SET PATH=C:\cygwin\bin;%PATH%
+SET USING_BASH="CYGWIN"
+:NOCYGWIN
 
 IF [%APP_HOME%] == [] (SET APP_HOME=%CD%)
     
@@ -36,6 +40,9 @@ mkdir %APP_HOME% %APP_DATA_HOME% %ARPO_HOME% %TEMP_HOME% %PKG_HOME%
 	ECHO       Developed by Felipe Matos Moreira
 	ECHO                    v2.0
 	ECHO ...............................................
+	ECHO.
+    ECHO BASH (%USING_BASH%)
+    ::where bash
 	ECHO.
 	ECHO SELECT THE OPTION YOU WANT
 	ECHO    1 - Set My Oracle Support Credentials
