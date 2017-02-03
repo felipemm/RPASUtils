@@ -2,6 +2,8 @@ ECHO OFF
 SETLOCAL ENABLEEXTENSIONS
 SETLOCAL ENABLEDELAYEDEXPANSION
 
+::Prefer Cygwin over Windows BASH
+IF EXIST C:\cygwin (SET PATH=C:\cygwin\bin;%PATH%)
 
 where /q bash
 IF ERRORLEVEL 1 (

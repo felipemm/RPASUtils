@@ -6,6 +6,9 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 ::SET APP_HOME=%CD%\..\App
 ::SET APP_DATA_HOME=%CD%\..\Data
 
+::Prefer Cygwin over Windows BASH
+IF EXIST C:\cygwin (SET PATH=C:\cygwin\bin;%PATH%)
+
 IF [%APP_HOME%] == [] (SET APP_HOME=%CD%)
     
 
